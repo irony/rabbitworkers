@@ -31,12 +31,6 @@ function publishTasks(e, numberOfTasks) {
 
 
 
-//Get RabbitURL for localhost & CF
 function rabbitUrl() {
-  if(process.env.VCAP_SERVICES) {
-    conf = JSON.parse(process.env.VCAP_SERVICES);
-    return conf['rabbitmq-2.4'][0].credentials.url;
-  } else {
-    return 'amqp://localhost';
-  }
+  return process.env.RABBITMQ_URL || 'amqp://localhost';
 }
